@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-mtnDark text-slate-50;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* ------------------------------------------------------------------
+   Global text-size scale controlled by data-text-size on <html>
+   ------------------------------------------------------------------ */
+
+:root {
+  /* Old "large" (18px) becomes the new "small" baseline */
+  --text-size-small: 18px;
+  --text-size-medium: 20px;
+  --text-size-large: 22px;
+}
+
+/* Tailwind font sizes use rem, so changing html font-size scales them */
+html[data-text-size="small"] {
+  font-size: var(--text-size-small);
+}
+
+html[data-text-size="medium"] {
+  font-size: var(--text-size-medium);
+}
+
+html[data-text-size="large"] {
+  font-size: var(--text-size-large);
+}
+
+/* Scale the custom px-based text utilities used throughout the demo */
+
+/* NEW SMALL: matches your old "large" look */
+html[data-text-size="small"] body .text-\[9px\] {
+  font-size: 10px;
+}
+html[data-text-size="small"] body .text-\[10px\] {
+  font-size: 11px;
+}
+html[data-text-size="small"] body .text-\[11px\] {
+  font-size: 12px;
+}
+
+/* NEW MEDIUM: one step bigger */
+html[data-text-size="medium"] body .text-\[9px\] {
+  font-size: 11px;
+}
+html[data-text-size="medium"] body .text-\[10px\] {
+  font-size: 12px;
+}
+html[data-text-size="medium"] body .text-\[11px\] {
+  font-size: 13px;
+}
+
+/* NEW LARGE: largest board-room mode */
+html[data-text-size="large"] body .text-\[9px\] {
+  font-size: 12px;
+}
+html[data-text-size="large"] body .text-\[10px\] {
+  font-size: 13px;
+}
+html[data-text-size="large"] body .text-\[11px\] {
+  font-size: 14px;
+}
