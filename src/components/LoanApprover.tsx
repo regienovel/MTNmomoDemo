@@ -103,8 +103,7 @@ export const LoanApprover: React.FC = () => {
                     Current decision
                   </p>
                   <p className="text-sm font-semibold text-slate-50">
-                    {selectedApp.customerName} ·{" "}
-                    {selectedApp.productType}
+                    {selectedApp.customerName} · {selectedApp.productType}
                   </p>
                   <p className="text-[10px] text-slate-400">
                     {selectedApp.segment} · {selectedApp.region},{" "}
@@ -169,7 +168,8 @@ export const LoanApprover: React.FC = () => {
                   Top reasons for this decision
                 </p>
                 <ul className="space-y-0.5 text-[10px] text-slate-300">
-                  {[selectedApp.topReason1,
+                  {[
+                    selectedApp.topReason1,
                     selectedApp.topReason2,
                     selectedApp.topReason3
                   ]
@@ -311,20 +311,22 @@ export const LoanApprover: React.FC = () => {
           {fairnessRows.map(row => {
             const approvalGapPp = row.approvalGapVsOverallPp * 100;
             const fprGapPp = row.fprGapVsOverallPp * 100;
-            const drift = row.driftFlag ||
+            const drift =
+              row.driftFlag ||
               Math.abs(approvalGapPp) >= 5 ||
               Math.abs(fprGapPp) >= 5;
 
             return (
               <div
                 key={`${row.subgroupType}-${row.subgroupValue}`}
-                className={`flex items-center gap-3 rounded-lg px-2 py-2 border ${
+                className={`flex flex-col sm:flex-row gap-2 sm:gap-3 rounded-lg px-2 py-2 border ${
                   drift
                     ? "border-red-500/70 bg-red-500/10"
                     : "border-momoBlue/50 bg-slate-900/70"
                 }`}
               >
-                <div className="w-28 shrink-0">
+                {/* Left: subgroup label + volume */}
+                <div className="sm:w-28 sm:shrink-0">
                   <p className="text-[11px] font-semibold text-slate-100">
                     {row.subgroupValue}
                   </p>
@@ -333,15 +335,14 @@ export const LoanApprover: React.FC = () => {
                   </p>
                 </div>
 
+                {/* Middle: approval + bad-rate bars */}
                 <div className="flex-1 space-y-1">
                   <div className="flex items-center gap-2">
                     <span className="w-20 text-slate-400">Approval</span>
                     <div className="flex-1 h-2 rounded-full bg-slate-800 overflow-hidden">
                       <div
                         className="h-full bg-emerald-400"
-                        style={{
-                          width: `${row.approvalRate * 100}%`
-                        }}
+                        style={{ width: `${row.approvalRate * 100}%` }}
                       />
                     </div>
                     <span className="w-12 text-right text-slate-100">
@@ -349,15 +350,11 @@ export const LoanApprover: React.FC = () => {
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="w-20 text-slate-400">
-                      Bad rate 30d
-                    </span>
+                    <span className="w-20 text-slate-400">Bad rate 30d</span>
                     <div className="flex-1 h-2 rounded-full bg-slate-800 overflow-hidden">
                       <div
                         className="h-full bg-amber-400"
-                        style={{
-                          width: `${row.badRate30d * 400}%`
-                        }}
+                        style={{ width: `${row.badRate30d * 400}%` }}
                       />
                     </div>
                     <span className="w-12 text-right text-slate-100">
@@ -366,7 +363,8 @@ export const LoanApprover: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="w-40 text-[10px] text-slate-300">
+                {/* Right: gaps & drift note */}
+                <div className="mt-1 sm:mt-0 sm:w-40 text-[10px] text-slate-300">
                   <p>
                     Approval gap:&nbsp;
                     <span

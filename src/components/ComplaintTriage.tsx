@@ -40,7 +40,9 @@ export const ComplaintTriage: React.FC = () => {
     }
   };
 
-  const resolutionLabel = (res: ComplaintAnalysis["recommendedResolution"]) => {
+  const resolutionLabel = (
+    res: ComplaintAnalysis["recommendedResolution"]
+  ) => {
     switch (res) {
       case "REFUND":
         return "Likely full refund";
@@ -66,12 +68,12 @@ export const ComplaintTriage: React.FC = () => {
         <div className="flex flex-col md:flex-row gap-4">
           {/* Left: complaint input */}
           <div className="flex-1 flex flex-col gap-2">
-            <div className="flex items-center justify-between gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2">
               <label className="text-xs text-slate-300">
                 Load Ghana-realistic example
               </label>
               <select
-                className="text-xs bg-slate-950 border border-momoBlue/50 rounded-lg px-2 py-1 text-slate-100"
+                className="w-full sm:w-auto text-xs bg-slate-950 border border-momoBlue/50 rounded-lg px-2 py-1 text-slate-100"
                 value={selectedId}
                 onChange={e => handleExampleChange(e.target.value)}
               >
